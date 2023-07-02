@@ -23,12 +23,17 @@ function displayMovieAttributes(attributes) {
         const showTimeDiv = document.createElement('div')
         const runTimeDiv = document.createElement('div')
         const availableTicketsDiv = document.createElement('div')
+        const buyDiv = document.createElement('div')
+        
         
         const poster = document.createElement('img')
         const title = document.createElement('h3')
         const showTime = document.createElement('p')
         const runTime = document.createElement('p')
         const  availableTickets = document.createElement('p')
+        const buyButton = document.createElement('button')
+        buyButton.textContent = "Buy"
+        buyButton.addEventListener('click', sellBook)
 
 
         // Assign Values
@@ -44,12 +49,15 @@ function displayMovieAttributes(attributes) {
     showTimeDiv.appendChild(showTime)
     runTimeDiv.appendChild(runTime)
     availableTicketsDiv.appendChild(availableTickets)
+    buyDiv.appendChild(buyButton)
 
     movieCardDiv.appendChild(posterDiv)
     movieCardDiv.appendChild(titleDiv)
     movieCardDiv.appendChild(showTimeDiv)
     movieCardDiv.appendChild(runTimeDiv)
     movieCardDiv.appendChild(availableTicketsDiv)
+    movieCardDiv.appendChild(buyDiv)
+
 
     document.querySelector('.movies').appendChild(movieCardDiv)
 
@@ -66,5 +74,9 @@ function  moviesSideBar(attributes){
         li.textContent = item.title
         document.querySelector('ul').appendChild(li)
     })
+}
+function sellBook(e){
+    e.preventDefault()
+    
 }
 fetchMovieAttributes()
