@@ -18,6 +18,7 @@ function displayMovieAttributes(attributes) {
         // console.log(items.title)
         // create elements dynamically
         const movieCardDiv = document.createElement('div')
+        movieCardDiv.className = "movie-card"
         const posterDiv = document.createElement('div')
         const titleDiv = document.createElement('div')
         const showTimeDiv = document.createElement('div')
@@ -31,9 +32,11 @@ function displayMovieAttributes(attributes) {
         const showTime = document.createElement('p')
         const runTime = document.createElement('p')
         const  availableTickets = document.createElement('p')
+        availableTickets.className = "available_tickets"
         const buyButton = document.createElement('button')
         buyButton.textContent = "Buy"
         buyButton.addEventListener('click', sellBook)
+        
 
 
         // Assign Values
@@ -75,8 +78,26 @@ function  moviesSideBar(attributes){
         document.querySelector('ul').appendChild(li)
     })
 }
-function sellBook(e){
-    e.preventDefault()
-    
-}
+
+function sellBook(e) {
+    e.preventDefault();
+    const movieCardDiv = e.target.closest('.movie-card');
+    const sellDetails = movieCardDiv.querySelector('.available_tickets');
+    if (sellDetails) {
+      let count = parseInt(sellDetails.textContent);
+      if (count > 0) {
+        count -= 1;
+        sellDetails.textContent = count;
+        console.log(sellDetails.textContent)
+      }
+      if (count === 0) {
+        sellDetails.textContent = "Sold Out";
+      }
+    } else {
+      console.error("The sellDetails element is null or does not exist.");
+    }
+  }
+  
+  
+  
 fetchMovieAttributes()
