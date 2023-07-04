@@ -67,11 +67,18 @@ function movieDetails(item, index) {
 
   const buyTickets = document.createElement('button')
   buyTickets.textContent = "Buy Ticket"
+  buyTickets.id ="buyButton"
 
   buyTickets.addEventListener('click', (e) => {
     buyTicket(item)
   })
-  const removeMovie = document.createElement('button')
+
+    const removeMovie = document.createElement('button')
+
+    removeMovie.addEventListener('click', (e)=>{
+      removeMovies(item)
+    })
+    removeMovie.textContent = "Remove Movie"
 
 
   // Append elements to the movie card
@@ -81,9 +88,11 @@ function movieDetails(item, index) {
   summaryDiv.appendChild(availableTickets);
   summaryDiv.appendChild(description);
   summaryDiv.appendChild(buyTickets);
+  summaryDiv.appendChild(removeMovie);
 
   movieCard.appendChild(imageDiv);
   movieCard.appendChild(summaryDiv);
+ 
 
   // Append the movie card to the movies container
   movies.appendChild(movieCard);
@@ -107,12 +116,23 @@ function buyTicket(item) {
 
     });
     document.querySelector('.available_tickets').textContent = item.capacity - item.tickets_sold;
-    buyTicket.textContent = (item.capacity === item.tickets_sold)? 'Sold Out': 'Buy Ticket'
+    document.querySelector('#buyButton').textContent = (item.capacity === item.tickets_sold)? "Sold Out": 'Buy Ticket'
 
 
   }
 }
 
+function removeMovies(item){
+  fetch(`http://localhost:3000/films/${item.id}`, {
+    method: "DELETE",
+    body: JSON.stringify(item),
+    headers:{
+      "Content-Type": "Application/json",
+    },
+
+  });
+
+}
 
 // // display movie attributes
 // function displayMovieAttributes(attributes) {

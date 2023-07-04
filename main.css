@@ -52,30 +52,29 @@ nav li a{
     
 }
 .container{
-    position: relative;
-    display: flex;
+    
+    display: flex;    
     justify-content: center;
+    flex-shrink: 0;
     align-items: center;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
+    margin: 0 auto;
+    gap: 150px;
    
-    /* to remove above color */
+    
+   
+   
 
 }
-/* .container div:first-child{
-    width: 25%;
-} */
+
 
 .sidebar{
     margin: 0;
     padding: 0;
     position: relative;
-    /* background-color: #F8E5E5; */
+    width: 300px;
     color: #FA255E;
-    width: 25%;
+    
     height:100%;
-    /* to change height above */
     text-align:justify;
     overflow: scroll;
     
@@ -89,8 +88,12 @@ nav li a{
     padding: 0;
 }
 .sidebar li{
-    margin: 5px 0 5px 0;
+    margin: 10px 0 10px 0;
     padding: 10px ;
+    margin:5px;
+    border-radius: 10px;
+    box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.25);
+
 }
 .sidebar li:hover{
     background-color: #000000;
@@ -102,38 +105,56 @@ nav li a{
 
  .movie-card {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     position: relative;
     width: 100%;
     height: 500px;
-    overflow: hidden;  
+   
     margin: 10px;
+  }
+  .movie-card > div{
+    width: 50%;
   }
 
   .image_container {
-    position: relative;   
-    width: 100%;
-    height: 100%;
+   width: 100%;
+    /* width: 100%;
+    height: 100%; */
     
   }
   
    .image_container img{
-    position: relative;
     background-size: cover;
+    height: 300px;
+    width: 500px;
+    
    
 
   } 
  
   .text_container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
+   
+    background-color: rgba(0, 0, 0, 0.425);
+    /* position: absolute; */
+    /* bottom: 0;
+    left: 0; */
+  
     color:#FA255E;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.425);
+    
     
   } 
+  .text_container h3,p, button{
+    margin: 10px;
+    border-radius: 10px;
+    width: auto;
+
+  }
+  button{
+    background-color: #000000;
+    color:#F8E5E5;
+    padding: 10px ;
+    border: none;
+  }
   
    
