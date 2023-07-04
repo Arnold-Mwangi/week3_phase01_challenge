@@ -7,14 +7,14 @@ fetch("http://localhost:3000/films")
     data.forEach((item, index) => {
 
       displayMovieTitles(item)
-      
+
       if (index === 0) {
         movieDetails(item);
       }
-     
+
 
     })
-   
+
 
   })
 
@@ -62,7 +62,17 @@ function movieDetails(item, index) {
   description.textContent = item.description;
 
   const availableTickets = document.createElement('p');
+  availableTickets.className = "available_tickets"
   availableTickets.textContent = Math.floor(item.capacity - item.tickets_sold);
+
+  const buyTickets = document.createElement('button')
+  buyTickets.textContent = "Buy Ticket"
+
+  buyTickets.addEventListener('click', (e) => {
+    buyTicket(item)
+  })
+  const removeMovie = document.createElement('button')
+
 
   // Append elements to the movie card
   imageDiv.appendChild(img);
@@ -70,20 +80,38 @@ function movieDetails(item, index) {
   summaryDiv.appendChild(showtime);
   summaryDiv.appendChild(availableTickets);
   summaryDiv.appendChild(description);
+  summaryDiv.appendChild(buyTickets);
 
   movieCard.appendChild(imageDiv);
   movieCard.appendChild(summaryDiv);
 
   // Append the movie card to the movies container
   movies.appendChild(movieCard);
-  if(index === 0){
+  if (index === 0) {
     movieDetails(item[0]);
     // movieDetails(item, 0)
   }
 }
 
 
+function buyTicket(item) {
 
+  if (item.tickets_sold < item.capacity) {
+    item.tickets_sold += 1
+    fetch(`http://localhost:3000/films/${item.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(item),
+      headers:{
+        "Content-Type": "Application/json",
+      },
+
+    });
+    document.querySelector('.available_tickets').textContent = item.capacity - item.tickets_sold;
+    buyTicket.textContent = (item.capacity === item.tickets_sold)? 'Sold Out': 'Buy Ticket'
+
+
+  }
+}
 
 
 // // display movie attributes

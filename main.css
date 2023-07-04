@@ -58,6 +58,7 @@ nav li a{
     align-items: center;
     height: 100%;
     width: 100%;
+    overflow: hidden;
    
     /* to remove above color */
 
@@ -133,6 +134,6 @@ nav li a{
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.425);
     
-  } */
+  } 
   
    
